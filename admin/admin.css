@@ -1,0 +1,47 @@
+/**admin page**/
+.header ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+    background-color:black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+      
+  }
+  
+.header li {
+    float:right;
+  }
+  
+.header li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+  }
+  
+  
+.header  li a:hover {
+    background-color: burlywood;
+    color: white;
+    
+}
+#buttons{
+    margin: 70px;
+    text-align: center;
+  
+  }
+  
+  .button-admin{
+    padding: 10px;
+    border-radius: 20px;
+    background-color: gray;
+    color: black;
+  }
+  .button-admin:hover{
+    background-color:beige;
+    color: black;
+  }
