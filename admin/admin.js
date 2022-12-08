@@ -1,5 +1,6 @@
-this.products =JSON.parse(localStorage.getItem('products')) ?
-JSON.parse(localStorage.getItem('products')) :[
+let products =
+JSON.parse(localStorage.getItem('.products')) ?
+JSON.parse(localStorage.getItem('.products')) :[
 {   id:1,
     type:"oil",
     productName:"Avalanche",
@@ -59,6 +60,7 @@ JSON.parse(localStorage.getItem('products')) :[
         <th scope="row">${products.id}</th>
         <td>${products.productName}</td>
         <td>${products.price}</td>
+        <td></td>
         <td><button type="button" class="btn btn-secondary">del</button></td>
         <td><button type="button" class="btn btn-secondary">edit</button></td>
       </tr>
@@ -68,35 +70,35 @@ JSON.parse(localStorage.getItem('products')) :[
  }
  tableShow();
  /*filtering*/
- filterArt("all")
- function filterArt(c) {
-   var x, i;
-   x = products;
-   if (c == "all") c = "";
-   for (i = 0; i < x.length; i++) {
-    reduceArt(x[i], "show");
-     if (x[i].className.indexOf(c) > -1)addArt(x[i], "show");
-   }
- }
+//  
+//  function filterArt(c) {
+//    var x, i;
+//    x = products;
+//    if (c == "all") c = "";
+//    for (i = 0; i < x.length; i++) {
+//     reduceArt(x[i], "show");
+//      if (x[i].className.indexOf(c) > -1)addArt(x[i], "show");
+//    }
+//  }
  
- function addArt(element, name) {
-   var i, arr1, arr2;
-   arr1 = element.className.split(" ");
-   arr2 = name.split(" ");
-   for (i = 0; i < arr2.length; i++) {
-     if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-   }
- }
+//  function addArt(element, name) {
+//    var i, arr1, arr2;
+//    arr1 = element.className.split(" ");
+//    arr2 = name.split(" ");
+//    for (i = 0; i < arr2.length; i++) {
+//      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+//    }
+//  }
  
- function reduceArt (element, name) {
-   var i, arr1, arr2;
-   arr1 = element.className.split(" ");
-   arr2 = name.split(" ");
-   for (i = 0; i < arr2.length; i++) {
-     while (arr1.indexOf(arr2[i]) > -1) {
-       arr1.splice(arr1.indexOf(arr2[i]), 1);     
-     }
-   }
-   element.className = arr1.join(" ");
- }
+//  function reduceArt (element, name) {
+//    var i, arr1, arr2;
+//    arr1 = element.className.split(" ");
+//    arr2 = name.split(" ");
+//    for (i = 0; i < arr2.length; i++) {
+//      while (arr1.indexOf(arr2[i]) > -1) {
+//        arr1.splice(arr1.indexOf(arr2[i]), 1);     
+//      }
+//    }
+//    element.className = arr1.join(" ");
+//  }
  
