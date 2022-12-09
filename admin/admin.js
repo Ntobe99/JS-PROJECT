@@ -61,9 +61,9 @@ localStorage.setItem("products",products_serialized);
  async function  tableShow(){products.forEach((products)=> {
     document.querySelector("#table-data").innerHTML+=
     `<tr>
-        <th scope="row">${products.id}</th>
-        <td>${products.productName}</td>
-        <td>${products.price}</td>
+        <th scope="row" id="id">${products.id}</th>
+        <td id="prduct">${products.productName}</td>
+        <td id="price">${products.price}</td>
         <td></td>
         <td><button type="button" class="btn btn-danger" id="del">Del</button></td>
         <td><!-- Button trigger modal -->
@@ -108,20 +108,49 @@ localStorage.setItem("products",products_serialized);
  tableShow();
  
  function sortData(){
-    
+  document.querySelector("#table-data").innerHTML+= ``
     var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1)
     
     console.table(sort);
 
     
-}
-sortData();
+  }
+  sortData();
 
 
 let sortBtn =document.querySelector("#sort");
 sortBtn.addEventListener('click',(e) =>{
-    sortData();
-    tableShow();
+  tableShow();
+  sortData();
+  // preventDefault();
+});
+let prods = [];
+// Button
+let add = document.querySelector('#addBtn');
+// let display = document.querySelector('#display');
+// Add event listener
+add.addEventListener('click', (e) => {
+    e.preventDefault();
+    let id = document.querySelector('#id').value;
+    let productName = document.querySelector('#product').value;
+    let price = document.querySelector('#price').value;
+    
+    products.push(
+        {
+            id,
+            productName,
+            price
+        }
+    )
+    localStorage.setItem('data', JSON.stringify(products));
 })
+tableShow();
+//  const deleteBtn = document.querySelector("#del");
+//  function deleteContent(id,productName,price){
+//    var del = localStorage.removeItem("products");
+//    console.log(del);
+//  }
+
+
 
  

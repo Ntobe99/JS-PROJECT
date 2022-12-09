@@ -56,19 +56,10 @@ JSON.parse(localStorage.getItem('products')) :[
 ]
 
 
-btncreate.onclick = event => {
-    // insert values
-    let flag = addSection(db.products, {
-      id: id.value,
-      productName: productName.value,
-      price: price.value
-    });
-    
-    price.value = "";
-  
-    // set id textbox value
-    getData(products, data => {
-      id.value = data.id + 1 || 1;
-    });
-    ();
+// 
+// async function  tableShow(){products.forEach((products)=> 
+//     {
+//     document.querySelector(".tBody").innerHTML+=
+//       //
+// }
   
