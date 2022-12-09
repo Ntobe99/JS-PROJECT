@@ -29,19 +29,13 @@
     color: white;
     
 }
-#buttons{
-    margin: 70px;
+.button-admin{
+    margin-top: 100px;
     text-align: center;
-  
+    
   }
-  
-  .button-admin{
-    padding: 10px;
-    border-radius: 20px;
-    background-color: gray;
-    color: black;
+
+  .btn{
+    color: black !important;
   }
-  .button-admin:hover{
-    background-color:beige;
-    color: black;
-  }
+

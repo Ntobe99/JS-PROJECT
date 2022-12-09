@@ -55,13 +55,20 @@ JSON.parse(localStorage.getItem('products')) :[
 },
 ]
 
-make:() =>{
-let container=document.getElementById(products)
-}
 
-for (const productName in products) {
-    if (Object.hasOwnProperty.call(object, key)) {
-        const element = object[key];
-        
-    }
-}
+btncreate.onclick = event => {
+    // insert values
+    let flag = addSection(db.products, {
+      id: id.value,
+      productName: productName.value,
+      price: price.value
+    });
+    
+    price.value = "";
+  
+    // set id textbox value
+    getData(products, data => {
+      id.value = data.id + 1 || 1;
+    });
+    ();
+  

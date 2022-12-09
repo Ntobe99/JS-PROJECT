@@ -54,6 +54,12 @@ JSON.parse(localStorage.getItem('products')) :[
     price:"R1350"
 },
 ]
+//local storage
+let products_serialized = JSON.stringify(products);
+console.log(products_serialized );
+localStorage.setItem("products",products_serialized);
+console.log(localStorage);
+
 async function diplayArt(){
     products.forEach((products)=> {
         document.querySelector(".container").innerHTML +=
@@ -70,6 +76,11 @@ async function diplayArt(){
     })
 }
 diplayArt();
+
+
+
+
+
 
 
 

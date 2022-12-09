@@ -1,6 +1,6 @@
 let products =
-JSON.parse(localStorage.getItem('.products')) ?
-JSON.parse(localStorage.getItem('.products')) :[
+JSON.parse(localStorage.getItem('products')) ?
+JSON.parse(localStorage.getItem('products')) :[
 {   id:1,
     type:"oil",
     productName:"Avalanche",
@@ -25,7 +25,7 @@ JSON.parse(localStorage.getItem('.products')) :[
     type:"oil",
     productName:"Renaisance Maiden",
     Image: "https://i.postimg.cc/sXVctJpr/ren-1.jpg",
-    price:"R1000"
+    price:"1000"
 },
 {   id:5, 
     type:"oil",
@@ -52,7 +52,11 @@ JSON.parse(localStorage.getItem('.products')) :[
     price:"R1350"
 },
 ]
-/***Admin-page***/
+let products_serialized = JSON.stringify(products);
+console.log(products_serialized );
+localStorage.setItem("products",products_serialized);
+// console.log(localStorage);
+/**Admin-page**/
 //show table
  async function  tableShow(){products.forEach((products)=> {
     document.querySelector("#table-data").innerHTML+=
@@ -61,44 +65,63 @@ JSON.parse(localStorage.getItem('.products')) :[
         <td>${products.productName}</td>
         <td>${products.price}</td>
         <td></td>
-        <td><button type="button" class="btn btn-secondary">del</button></td>
-        <td><button type="button" class="btn btn-secondary">edit</button></td>
+        <td><button type="button" class="btn btn-danger" id="del">Del</button></td>
+        <td><!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Edit-products
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              <div class="mb-3">
+              <form>
+              <label for="exampleInputEmail1" class="form-label">product name</label>
+              <input type="email" class="form-control" id="text" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">input product name</div>
+            </div>
+            <div class="mb-3">
+              <label for="te" class="form-label">Price</label>
+              <div id="emailHelp" class="form-text">input price</div>
+              <input type="number" class="form-control" id="exampleInputPassword1">
+            </div>
+              </div>
+              </form>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div></td>
       </tr>
       
       `
  })
  }
  tableShow();
- /*filtering*/
-//  
-//  function filterArt(c) {
-//    var x, i;
-//    x = products;
-//    if (c == "all") c = "";
-//    for (i = 0; i < x.length; i++) {
-//     reduceArt(x[i], "show");
-//      if (x[i].className.indexOf(c) > -1)addArt(x[i], "show");
-//    }
-//  }
  
-//  function addArt(element, name) {
-//    var i, arr1, arr2;
-//    arr1 = element.className.split(" ");
-//    arr2 = name.split(" ");
-//    for (i = 0; i < arr2.length; i++) {
-//      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-//    }
-//  }
- 
-//  function reduceArt (element, name) {
-//    var i, arr1, arr2;
-//    arr1 = element.className.split(" ");
-//    arr2 = name.split(" ");
-//    for (i = 0; i < arr2.length; i++) {
-//      while (arr1.indexOf(arr2[i]) > -1) {
-//        arr1.splice(arr1.indexOf(arr2[i]), 1);     
-//      }
-//    }
-//    element.className = arr1.join(" ");
-//  }
+ function sortData(){
+    
+    var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1)
+    
+    console.table(sort);
+
+    
+}
+sortData();
+
+
+let sortBtn =document.querySelector("#sort");
+sortBtn.addEventListener('click',(e) =>{
+    sortData();
+    tableShow();
+})
+
  
