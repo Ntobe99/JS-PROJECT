@@ -25,26 +25,27 @@
           <li><a href="/index.html">HOME</a></li>
         </ul>
       </div>
-      <h2 >Checkout List</h2>
+      <h2 class="text-center" >Checkout List</h2>
       <table class="table table-dark table-hover">
         <thead>
           <tr>
             <th><abbr title="Position"></abbr></th>
             <th></th>
-            <th scope="col">Price</th>
+            <th scope="col" >Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Total</th>
             <th></th>
           </tr>
         </thead>
-      <tbody></tbody>
+      <tbody class="tablebody" id="table-data"></tbody>
       <tfoot>
-        <tr>
-          <td>
-            <button id="clearBtn" class="btn btn-dark" >Clear all</button>
-          </td>
+        
         </tr>
     </table>
+    <tr>
+      <td>
+        <button id="clearBtn" class="btn btn-dark" >Clear all</button>
+      </td>
   </div>       
      </main>
     <script src="checkout.js"></script>

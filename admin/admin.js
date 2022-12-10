@@ -9,7 +9,7 @@ let  products =JSON.parse(localStorage.getItem('products'));
         <td id="prduct">${products.productName}</td>
         <td id="price">${products.price}</td>
         <td></td>
-        <td><button type="button" class="btn btn-danger" id="del">Del</button></td>
+        <td><button type="button" class="btn btn-danger" id="del" onclick="deleteRow(item)">Del</button></td>
         <td><!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Edit-products
@@ -48,9 +48,8 @@ let  products =JSON.parse(localStorage.getItem('products'));
       
       `
  })
- }
-//   
-
+ }   
+tableShow();
   
  function sortData() {
   // document.querySelector("#table-data").innerHTML += ``
@@ -58,7 +57,7 @@ let  products =JSON.parse(localStorage.getItem('products'));
   var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1)
   var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1) 
   console.table(sort);
-  // tableShow()
+  tableShow()
   }
   sortData();
 
@@ -66,12 +65,11 @@ let  products =JSON.parse(localStorage.getItem('products'));
 let sortBtn =document.querySelector("#sort");
 sortBtn.addEventListener('click',(e) =>{
    e.preventDefault();
-  tableShow()
+  // tableShow()
   sortData();
   
 });
 var products_upt = [];
-// Button
 let add = document.querySelector('#addBtn');
 
 // Add event listener
@@ -90,19 +88,47 @@ add.addEventListener('click', (e) => {
     
     )
     localStorage.setItem('data', JSON.stringify(products));
-    tableShow();   
+    tableShow(); 
+
 })
 
+function deleteRow(item) {
+  let ProductItem= products.findIndex(a => {
+      return a.id == ProductItem.id
+  });
+  products.splice(index, 1);
+  localStorage.setItem('products', products);
+  tableShow();
+}  
 
-// 
-//  const deleteBtn = document.querySelector("#del");
-//  function deleteContent(id,productName,price){
-//    var del = localStorage.removeItem("products");
+
+
+function EditData(item) {
+  this.id = item.id;
+  this.productName = document.querySelector('productName').value;
+  this.price = document.querySelector('price').value;
+  
+  
+  let itemIndex = products.findIndex((data)=>{
+      return data.id === itemIndex.id;
+  })
+}
+products[itemIndex] = {id: this.id, productName: this.productName, 
+  price :this.price};
+ localStorage.setItem('products', JSON.stringify(products));
+ tableShow();
+
+ location.reload();
+
+
+ const deleteBtn = document.querySelector("#del");
+ function deleteContent(id,productName,price){
+   var del = localStorage.removeItem("products");
    
-//    console.log(del);
-//  }
-//  deleteContent();
-// tableShow();
+   console.log(del);
+ }
+ deleteContent();
+tableShow();
 
 
 
