@@ -45,9 +45,15 @@
   height: 100vh;
   
 }
-.pic{
+/* .pic{
   margin: 0;
   padding: 0;
+} */
+img{ 
+  margin: 0;
+  padding: 0;
+  width:1600px;
+  height: 300px;
 }
 @media only screen and (max-width: 700px) and (min-width: 300px) {
   ul {
@@ -63,11 +69,10 @@
 }
 img{
   margin-top: 200px;
+  max-width: 700px;
 }
 }
 /*products-style*/
-
-
 .container{
   height: 80vh;
   padding: 10px;

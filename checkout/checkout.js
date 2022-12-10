@@ -1,65 +1,51 @@
-let products =
-JSON.parse(localStorage.getItem('products')) ?
-JSON.parse(localStorage.getItem('products')) :[
-  
- {   
-    id:1,
-    type:"oil",
-    productName:"Avalanche",
-    Image: "https://i.postimg.cc/66MjxFj1/abst2.jpg",
-    price:"R1300"
+let checkoutList = JSON.parse(localStorage.getItem('#checkout')) ? 
+JSON.parse(localStorage.getItem('checkout')) : [];
+
+
+let tableBody = document.querySelector('tBody');
+(function checkoutShow() {
+    try{
+        if(!checkoutList.length) 
+        throw "add product to checkout list";
+        let sortData = checkoutList.sort((a, b)=> a.id - b.id);
+        let groupData = sortData.reduce((a, b)=>{
+            a[b.id] = a[b.id] ?? [];
+            a[b.id].push(b)
+            return a
+        }, {});
+        
+        console.log(groupData);
+        let amountDue = 0;
+        for(let i in groupData){
+            let grandTotal = groupData[i].length * groupData[i][0].amount;  
+            amountDue += grandTotal;
+            tableBody.innerHTML +=
+             `
+                <tr>
+                <th scope="row" id="id">${products.id}</th>
+                <td id="prduct">${products.productName}</td>
+                <td id="price">${products.price}</td>
+                <td></td>
+                </tr>
+            `
+        }
+        // Display the amount due
+        tableBody.innerHTML +=`
+            <tr class="amount-due">
+                <td></td>                    
+                <td></td>                    
+                <td>Amount Due:</td> 
+                <td>${amountDue}</td>
+            </tr>
+        `
+    }catch(e) {
+        tableBody.innerText = e;
     
-},
-{   id:2,
-    type:"oil",
-    productName:"The modern Hague",
-    Image: "https://i.postimg.cc/MZ54KnT5/water-1.jpg",
-    price:"R6000"
-
-},
-{   id:3,
-    type:"oil",
-    productName:"Flower garden",
-    Image: "https://i.postimg.cc/xjpR4M8w/oil2.jpg",
-    price:"R3000"
-},
-{   id:4,
-    type:"oil",
-    productName:"Renaisance Maiden",
-    Image: "https://i.postimg.cc/sXVctJpr/ren-1.jpg",
-    price:"R1000"
-},
-{   id:5, 
-    type:"oil",
-    productName:"Road to heaven",
-    Image: "https://i.postimg.cc/gjzTHWM3/ren-2.jpg",
-    price:"R1350"
-},
-{   id:6,
-    type:"oil",
-    productName:"Mermaid enchantress",
-    Image: "https://i.postimg.cc/fb7C2PSC/water-2.jpg",
-    price:"R1400"
-},
-{   id:7,
-    type:"oil",
-    productName:"Flower pot",
-    Image: "https://i.postimg.cc/Kj1n2pjd/flower.jpg",
-    price:"R1150"
-},
-{   id:8,
-    type:"oil",
-    productName:"Hypotize me",
-    Image: "https://i.postimg.cc/50MGjvL7/abst1.jpg",
-    price:"R1350"
-},
-]
-
-
-// 
-// async function  tableShow(){products.forEach((products)=> 
-//     {
-//     document.querySelector(".tBody").innerHTML+=
-//       //
-// }
-  
+    }
+})();
+/***clear items from  local storage */
+let clearAll = document.querySelector('#clearBtn');
+clearAll.addEventListener('click', ()=>{
+    localStorage.removeItem('checkout');
+    tableBody.innerHTML = "Please add the product to the checkout list.";
+})

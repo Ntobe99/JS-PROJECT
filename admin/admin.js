@@ -1,64 +1,8 @@
-let products =
-JSON.parse(localStorage.getItem('products')) ?
-JSON.parse(localStorage.getItem('products')) :[
-{   id:1,
-    type:"oil",
-    productName:"Avalanche",
-    Image: "https://i.postimg.cc/66MjxFj1/abst2.jpg",
-    price:"R1300"
-    
-},
-{   id:2,
-    type:"oil",
-    productName:"The modern Hague",
-    Image: "https://i.postimg.cc/MZ54KnT5/water-1.jpg",
-    price:"R6000"
 
-},
-{   id:3,
-    type:"oil",
-    productName:"Flower garden",
-    Image: "https://i.postimg.cc/xjpR4M8w/oil2.jpg",
-    price:"R3000"
-},
-{   id:4,
-    type:"oil",
-    productName:"Renaisance Maiden",
-    Image: "https://i.postimg.cc/sXVctJpr/ren-1.jpg",
-    price:"1000"
-},
-{   id:5, 
-    type:"oil",
-    productName:"Road to heaven",
-    Image:"https://i.postimg.cc/gjzTHWM3/ren-2.jpg",
-    price:"R1350"
-},
-{   id:6,
-    type:"oil",
-    productName:"Mermaid enchantress",
-    Image: "https://i.postimg.cc/fb7C2PSC/water-2.jpg",
-    price:"R1400"
-},
-{   id:7,
-    type:"oil",
-    productName:"Flower pot",
-    Image: "https://i.postimg.cc/Kj1n2pjd/flower.jpg",
-    price:"R1150"
-},
-{   id:8,
-    type:"oil",
-    productName:"Hypotize me",
-    Image: "https://i.postimg.cc/50MGjvL7/abst1.jpg",
-    price:"R1350"
-},
-]
-let products_serialized = JSON.stringify(products);
-console.log(products_serialized );
-localStorage.setItem("products",products_serialized);
-// console.log(localStorage);
-/**Admin-page**/
-//show table
- async function  tableShow(){products.forEach((products)=> {
+let  products =JSON.parse(localStorage.getItem('products'));
+
+ function  tableShow()
+ {products.forEach((products)=> {
     document.querySelector("#table-data").innerHTML+=
     `<tr>
         <th scope="row" id="id">${products.id}</th>
@@ -105,29 +49,31 @@ localStorage.setItem("products",products_serialized);
       `
  })
  }
- tableShow();
- 
- function sortData(){
-  document.querySelector("#table-data").innerHTML+= ``
-    var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1)
-    
-    console.table(sort);
+//   
 
-    
+  
+ function sortData() {
+  // document.querySelector("#table-data").innerHTML += ``
+  var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1) 
+  var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1)
+  var sort = products.sort((a, b) => (a.productName > b.productName) ? 1 : -1) 
+  console.table(sort);
+  // tableShow()
   }
   sortData();
 
 
 let sortBtn =document.querySelector("#sort");
 sortBtn.addEventListener('click',(e) =>{
-  tableShow();
+   e.preventDefault();
+  tableShow()
   sortData();
-  // preventDefault();
+  
 });
-let prods = [];
+var products_upt = [];
 // Button
 let add = document.querySelector('#addBtn');
-// let display = document.querySelector('#display');
+
 // Add event listener
 add.addEventListener('click', (e) => {
     e.preventDefault();
@@ -141,15 +87,23 @@ add.addEventListener('click', (e) => {
             productName,
             price
         }
+    
     )
     localStorage.setItem('data', JSON.stringify(products));
+    tableShow();   
 })
-tableShow();
+
+
+// 
 //  const deleteBtn = document.querySelector("#del");
 //  function deleteContent(id,productName,price){
 //    var del = localStorage.removeItem("products");
+   
 //    console.log(del);
 //  }
+//  deleteContent();
+// tableShow();
+
 
 
 

@@ -1,8 +1,7 @@
 
 //local storage
 let products =
-JSON.parse(localStorage.getItem('products')) ?
-JSON.parse(localStorage.getItem('products')) :[
+[
 {   id:1,
     type:"oil",
     productName:"Avalanche",
@@ -54,14 +53,12 @@ JSON.parse(localStorage.getItem('products')) :[
     price:"R1350"
 },
 ]
-//local storage
-let products_serialized = JSON.stringify(products);
-console.log(products_serialized );
-localStorage.setItem("products",products_serialized);
-console.log(localStorage);
-
+let productList = JSON.parse(localStorage.getItem('products')) ?
+JSON.parse(localStorage.getItem('products')) : 
+JSON.parse( 
+    localStorage.setItem("products", JSON.stringify(products)));
 async function diplayArt(){
-    products.forEach((products)=> {
+    productList.forEach((products)=> {
         document.querySelector(".container").innerHTML +=
             `<div class="container ">
           <div class="card" style="width: 18rem;">
